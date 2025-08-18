@@ -28,34 +28,27 @@ export default function Portfolio() {
   }, []);
 
 
-
   useEffect(() => {
-    const handleScroll = () => {
-      const sections = ['home', 'about', 'skills', 'projects', 'contact'];
-      const current = sections.find(section => {
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          return rect.top <= 100 && rect.bottom >= 100;
-        }
-        return false;
-      });
-      if (current) setActiveSection(current);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const id = entry.target.getAttribute('data-animate');
+            if (id) {
+              setVisibleElements((prev) => new Set(prev).add(id));
+              observer.unobserve(entry.target); // Animate only once
+            }
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
 
-      // Intersection observer for animations
-      const elements = document.querySelectorAll('[data-animate]');
-      elements.forEach(el => {
-        const rect = el.getBoundingClientRect();
-        if (rect.top < window.innerHeight - 100) {
-          setVisibleElements(prev => new Set(prev).add(el.dataset.animate));
-        }
-      });
-    };
+    document.querySelectorAll('[data-animate]').forEach((el) => observer.observe(el));
 
-    window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Initial check
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => observer.disconnect();
   }, []);
+
 
   const [fromValues, setformValues] = useState({
     from_name: '',
@@ -75,13 +68,14 @@ export default function Portfolio() {
     }));
   };
 
+
   const sendEmail = (e) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    const serviceID = 'service_0wazajj';
-    const templateID = 'template_8wlxto7';
-    const userID = '7lnC_-gC9KTTvTPhA';
+    const serviceID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+    const templateID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+    const userID = import.meta.env.VITE_EMAILJS_USER_ID;
 
     emailjs.sendForm(serviceID, templateID, form.current, userID)
       .then((result) => {
@@ -103,8 +97,6 @@ export default function Portfolio() {
         setSubmitStatus('error');
       });
   };
-
-
 
 
   const scrollToSection = (sectionId) => {
@@ -163,105 +155,109 @@ export default function Portfolio() {
   return (
     <div className="bg-black text-white min-h-screen overflow-x-hidden relative">
       <style>{`
-        .gradient-text {
-          background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #ffeaa7, #dda0dd);
-          background-size: 300% 300%;
-          -webkit-background-clip: text;
-          background-clip: text;
-          -webkit-text-fill-color: transparent;
-          animation: gradient-animation 6s ease infinite;
-        }
-        
-        @keyframes gradient-animation {
-          0% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-          100% { background-position: 0% 50%; }
-        }
-        
-        .fade-in {
-          opacity: 0;
-          transform: translateY(30px);
-          transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .fade-in.visible {
-          opacity: 1;
-          transform: translateY(0);
-        }
-        
-        .fade-in-left {
-          opacity: 0;
-          transform: translateX(-50px);
-          transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .fade-in-left.visible {
-          opacity: 1;
-          transform: translateX(0);
-        }
-        
-        .fade-in-right {
-          opacity: 0;
-          transform: translateX(50px);
-          transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .fade-in-right.visible {
-          opacity: 1;
-          transform: translateX(0);
-        }
-        
-        .stagger-1 { transition-delay: 0.1s; }
-        .stagger-2 { transition-delay: 0.3s; }
-        .stagger-3 { transition-delay: 0.5s; }
-        .stagger-4 { transition-delay: 0.7s; }
-        
-        @keyframes float {
-          0%, 100% { transform: translateY(0px) rotate(0deg); }
-          25% { transform: translateY(-10px) rotate(1deg); }
-          50% { transform: translateY(-5px) rotate(-1deg); }
-          75% { transform: translateY(-15px) rotate(1deg); }
-        }
-        
-        .float-animation {
-          animation: float 6s ease-in-out infinite;
-        }
-        
-        @keyframes pulse-glow {
-          0%, 100% { box-shadow: 0 0 20px rgba(255, 107, 107, 0.5); }
-          50% { box-shadow: 0 0 40px rgba(255, 107, 107, 0.8), 0 0 60px rgba(78, 205, 196, 0.3); }
-        }
-        
-        .pulse-glow {
-          animation: pulse-glow 3s ease-in-out infinite;
-        }
-        
-        .glass-card {
-          background: rgba(255, 255, 255, 0.05);
-          backdrop-filter: blur(20px);
-          border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .hover-lift {
-          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .hover-lift:hover {
-          transform: translateY(-10px) scale(1.02);
-          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-        
-        .text-glow {
-          text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-        }
-        
-        .bg-mesh {
-          background: 
-            radial-gradient(circle at 20% 50%, rgba(255, 107, 107, 0.3) 0%, transparent 50%),
-            radial-gradient(circle at 80% 20%, rgba(78, 205, 196, 0.3) 0%, transparent 50%),
-            radial-gradient(circle at 40% 80%, rgba(69, 183, 209, 0.3) 0%, transparent 50%);
-        }
-      `}</style>
+.gradient-text {
+  background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #ffeaa7, #dda0dd);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-animation 6s ease infinite;
+}
+
+@keyframes gradient-animation {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Fade animations */
+.fade-in, .fade-in-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.fade-in.visible, .fade-in-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-in-left {
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.fade-in-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.fade-in-right {
+  opacity: 0;
+  transform: translateX(50px);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.fade-in-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Stagger delays */
+.stagger-1 { transition-delay: 0.1s; }
+.stagger-2 { transition-delay: 0.3s; }
+.stagger-3 { transition-delay: 0.5s; }
+.stagger-4 { transition-delay: 0.7s; }
+
+/* Float animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  25% { transform: translateY(-10px) rotate(1deg); }
+  50% { transform: translateY(-5px) rotate(-1deg); }
+  75% { transform: translateY(-15px) rotate(1deg); }
+}
+.float-animation {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Glow animation */
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(255, 107, 107, 0.5); }
+  50% { box-shadow: 0 0 40px rgba(255, 107, 107, 0.8), 0 0 60px rgba(78, 205, 196, 0.3); }
+}
+.pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+/* Glass card */
+.glass-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Hover lift */
+.hover-lift {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.hover-lift:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Text glow */
+.text-glow {
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+}
+
+/* Background mesh */
+.bg-mesh {
+  background: 
+    radial-gradient(circle at 20% 50%, rgba(255, 107, 107, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(78, 205, 196, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 40% 80%, rgba(69, 183, 209, 0.3) 0%, transparent 50%);
+}
+`}</style>
+
+
 
 
       {/* Animated background */}
@@ -379,7 +375,7 @@ export default function Portfolio() {
 
             <p className={`text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed transition-all duration-1000 delay-600 ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-16 opacity-0'
               }`}>
-              Crafting extraordinary digital experiences with React and modern UI tools — 
+              Crafting extraordinary digital experiences with React and modern UI tools —
               building responsive, user-friendly interfaces and mastering frontend development best practices.
             </p>
 
@@ -463,23 +459,36 @@ export default function Portfolio() {
       {/* Skills Section */}
       <section id="skills" className="py-32 px-6 relative">
         <div className="max-w-6xl mx-auto relative">
+          {/* Section Title */}
           <h2
             data-animate="skills-title"
+            data-id="skills-title"
             className={`text-3xl md:text-4xl font-bold text-center mb-10 leading-tight pb-2 gradient-text fade-in ${visibleElements.has('skills-title') ? 'visible' : ''
               }`}
           >
             Skills & Expertise
           </h2>
 
+          {/* Skills Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {skills.map((skill, index) => (
               <div
                 key={index}
                 data-animate={`skill-${index}`}
-                className={`glass-card p-8 rounded-3xl hover-lift group fade-in ${visibleElements.has(`skill-${index}`) ? 'visible' : ''
-                  } ${index % 4 === 0 ? 'stagger-1' : index % 4 === 1 ? 'stagger-2' : index % 4 === 2 ? 'stagger-3' : 'stagger-4'}`}
+                data-id={`skill-${index}`}
+                className={`glass-card p-8 rounded-3xl hover-lift group fade-in-up ${visibleElements.has(`skill-${index}`) ? 'visible' : ''
+                  } ${index % 4 === 0
+                    ? 'stagger-1'
+                    : index % 4 === 1
+                      ? 'stagger-2'
+                      : index % 4 === 2
+                        ? 'stagger-3'
+                        : 'stagger-4'
+                  }`}
               >
-                <div className={`w-16 h-16 rounded-2xl bg-gradient-to-r ${skill.color} p-0.5 mb-6 mx-auto group-hover:scale-110 transition-transform duration-300`}>
+                <div
+                  className={`w-16 h-16 rounded-2xl bg-gradient-to-r ${skill.color} p-0.5 mb-6 mx-auto group-hover:scale-110 transition-transform duration-300`}
+                >
                   <div className="w-full h-full bg-black rounded-2xl flex items-center justify-center">
                     <div className="text-white group-hover:scale-110 transition-transform duration-300">
                       {skill.icon}
@@ -499,6 +508,8 @@ export default function Portfolio() {
           </div>
         </div>
       </section>
+
+
 
 
 
@@ -761,9 +772,12 @@ export default function Portfolio() {
               {submitStatus === 'success' && (
                 <div className="p-4 glass-card border border-green-400/30 rounded-xl bg-green-400/10">
                   <p className="text-green-300 text-center flex items-center justify-center space-x-2">
-                    <Star className="w-5 h-5 text-green-400" />
-                    <span>Thank you! Your message has been sent successfully. I'll get back to you soon!</span>
+                    <Star className="inline-block w-5 h-5 text-green-400" />
+                    <span className="inline-block align-middle">
+                      Thank you! Your message has been sent successfully. I'll get back to you soon!
+                    </span>
                   </p>
+
                 </div>
               )}
 
