@@ -145,7 +145,7 @@ export default function Portfolio() {
     {
       icon: <Palette className="w-8 h-8" />,
       name: "UI Libraries & Styling",
-      tech: "Bootstrap, Material-UI, TailwindCSS"
+      tech: "Bootstrap, Material-UI"
     },
     {
       icon: <Smartphone className="w-8 h-8" />,
@@ -157,16 +157,6 @@ export default function Portfolio() {
       name: "Component-Based Architecture",
       tech: "Reusable Components, State Management, Props & Hooks"
     },
-    {
-      icon: <Server className="w-8 h-8" />,
-      name: "Backend Development (Learning)",
-      tech: "Node.js, Express.js, REST APIs"
-    },
-    {
-      icon: <Database className="w-8 h-8" />,
-      name: "Databases (Learning)",
-      tech: "MongoDB, Mongoose"
-    }
   ];
 
 
@@ -331,9 +321,9 @@ export default function Portfolio() {
           </div>
 
           {/* Mobile menu */}
-          <div className={`md:hidden transition-all duration-300 overflow-hidden ${isMenuOpen ? 'max-h-64 opacity-100 mt-4' : 'max-h-0 opacity-0'
+          <div className={`md:hidden transition-all duration-300 overflow-hidden ${isMenuOpen ? 'max-h-70 opacity-100 mt-4' : 'max-h-0 opacity-0'
             }`}>
-            <div className="glass-card rounded-2xl p-6 space-y-3">
+            <div className="glass-card rounded-2xl p-4 space-y-3">
               {['home', 'about', 'skills', 'experience', 'projects', 'contact'].map((section) => (
                 <button
                   key={section}
@@ -382,15 +372,15 @@ export default function Portfolio() {
               }`}>
               <span className="px-6 py-3 glass-card rounded-full text-cyan-400 font-semibold flex items-center space-x-2">
                 <Rocket className="w-5 h-5" />
-                <span>Frontend Developer | Transitioning to Full-Stack</span>
+                <span>React Frontend Developer</span>
               </span>
 
             </div>
 
             <p className={`text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed transition-all duration-1000 delay-600 ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-16 opacity-0'
               }`}>
-              Crafting extraordinary digital experiences with React and modern UI tools — now expanding my expertise
-              into full-stack development with Node.js, Express, and MongoDB.
+              Crafting extraordinary digital experiences with React and modern UI tools — 
+              building responsive, user-friendly interfaces and mastering frontend development best practices.
             </p>
 
             <div className={`flex justify-center space-x-6 mb-16 transition-all duration-1000 delay-800 ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-16 opacity-0'
@@ -449,7 +439,7 @@ export default function Portfolio() {
               className={`space-y-8 fade-in-right stagger-2 ${visibleElements.has('about-content') ? 'visible' : ''}`}>
               <div className="space-y-6">
                 <p className="text-xl text-gray-300 leading-relaxed">
-                  I'm a passionate frontend developer who transforms creative visions into
+                  I'm a passionate React developer who transforms creative visions into
                   <span className="text-cyan-400 font-semibold"> interactive digital experiences</span>.
                   My journey started with curiosity and evolved into a mission to build interfaces
                   that not only look stunning but also feel intuitive and responsive.
@@ -577,7 +567,7 @@ export default function Portfolio() {
                   <div className="glass-card rounded-3xl p-8 hover-lift group">
                     <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
                       <h3 className="text-2xl font-bold text-white group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:bg-clip-text group-hover:from-pink-400 group-hover:to-purple-400 transition-all duration-300">
-                        Frontend Intern – Evu Inc. USA
+                        React Intern – Evu Inc. USA
                       </h3>
                       <span className="text-sm text-pink-400 font-semibold px-4 py-2 bg-pink-400/10 rounded-full border border-pink-400/20">
                         March 2025 - August 2025
@@ -661,14 +651,14 @@ export default function Portfolio() {
       {/* Contact Form Section */}
       <section id="contact" className="py-32 px-6 relative">
         <style>{`
-  input:-webkit-autofill,
-  input:-webkit-autofill:hover,
-  input:-webkit-autofill:focus,
-  input:-webkit-autofill:active,
-  textarea:-webkit-autofill,
-  textarea:-webkit-autofill:hover,
-  textarea:-webkit-autofill:focus,
-  textarea:-webkit-autofill:active {
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    input:-webkit-autofill:active,
+    textarea:-webkit-autofill,
+    textarea:-webkit-autofill:hover,
+    textarea:-webkit-autofill:focus,
+    textarea:-webkit-autofill:active {
     -webkit-box-shadow: 0 0 0px 1000px transparent inset !important;
     -webkit-text-fill-color: white !important;
     caret-color: white !important;
@@ -830,7 +820,7 @@ export default function Portfolio() {
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold text-white">Faraz Naqvi</h3>
-                  <p className="text-gray-400 text-sm">Frontend Developer</p>
+                  <p className="text-gray-400 text-sm">React Developer</p>
                 </div>
               </div>
 
