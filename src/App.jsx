@@ -586,7 +586,7 @@ export default function Portfolio() {
                     </div>
                     <p className="text-gray-300 mb-3 font-medium">Project-Based Learning in a Real Startup Environment</p>
                     <p className="text-gray-400 mb-6 leading-relaxed group-hover:text-gray-300 transition-colors duration-300">
-                      Contributing to the startup project Elaview which is a B2B ad space marketplace project.
+                      Contributed to the startup project Elaview which is a B2B ad space marketplace project.
                       Here landlords can rent out their unused spaces (walls, windows etc) to ad agencies.
                       Built responsive UI components using React and Material-UI.
                       Collaborated with the team via Slack and managed code through GitHub.
