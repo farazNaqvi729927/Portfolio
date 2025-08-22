@@ -267,11 +267,11 @@ export default function Portfolio() {
 
       <div className="fixed inset-0">
         <div
-          className="absolute w-96 h-96 rounded-full opacity-20 blur-3xl transition-all duration-1000"
+          className="absolute w-96 h-96 xl:w-[28rem] xl:h-[28rem] 2xl:w-[32rem] 2xl:h-[32rem] rounded-full opacity-20 blur-3xl transition-all duration-1000"
           style={{
             background: 'linear-gradient(45deg, #ff6b6b, #4ecdc4)',
-            left: `${mousePosition.x / 20}px`,
-            top: `${mousePosition.y / 20}px`,
+            left: `${mousePosition.x / (window.innerWidth > 1280 ? 15 : 20)}px`,
+            top: `${mousePosition.y / (window.innerWidth > 1280 ? 15 : 20)}px`,
           }}
         ></div>
       </div>
@@ -280,7 +280,7 @@ export default function Portfolio() {
 
       {/* Navigation */}
       <nav className={`fixed top-0 w-full glass-card z-50 transition-all duration-500 ${isLoaded ? 'translate-y-0' : '-translate-y-full'}`}>
-        <div className="max-w-6xl mx-auto px-6 py-4">
+        <div className="max-w-6xl xl:max-w-7xl 2xl:max-w-screen-2xl mx-auto px-6 py-4">
           <div className="flex justify-between items-center">
             <div className="flex items-center space-x-3">
               <div className="w-10 h-10 bg-gradient-to-r from-pink-500 to-cyan-500 rounded-xl flex items-center justify-center pulse-glow">
@@ -344,9 +344,9 @@ export default function Portfolio() {
 
       {/* Hero Section */}
       <section id="home" className="min-h-screen flex items-center justify-center relative pt-28">
-        <div className="text-center z-10 px-6 max-w-5xl mx-auto">
+        <div className="text-center z-10 px-6 max-w-5xl xl:max-w-6xl 2xl:max-w-7xl mx-auto">
           <div className="mb-12">
-            <div className={`w-40 h-40 mx-auto mb-8 rounded-full relative transition-all duration-1000 float-animation ${isLoaded ? 'scale-100 opacity-100' : 'scale-50 opacity-0'
+            <div className={`w-32 h-32 md:w-40 md:h-40 xl:w-48 xl:h-48 2xl:w-52 2xl:h-52 mx-auto mb-8 rounded-full relative transition-all duration-1000 float-animation ${isLoaded ? 'scale-100 opacity-100' : 'scale-50 opacity-0'
               }`}>
               <div className="absolute inset-0 bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 rounded-full blur-xl opacity-75"></div>
               <div className="relative w-full h-full rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 p-1">
@@ -407,14 +407,14 @@ export default function Portfolio() {
 
       {/* About Section */}
       <section id="about" className="py-32 px-6 relative">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-6xl xl:max-w-7xl 2xl:max-w-screen-2xl mx-auto">
           <h2
             data-animate="about-title"
             className={`text-3xl md:text-4xl font-bold text-center mb-10 leading-tight pb-2 gradient-text fade-in ${visibleElements.has('about-title') ? 'visible' : ''}`}>
             About Me
           </h2>
 
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div className="grid lg:grid-cols-2 gap-16 xl:gap-20 2xl:gap-24 items-center">
             <div
               data-animate="about-image"
               className={`fade-in-left ${visibleElements.has('about-image') ? 'visible' : ''}`}
@@ -458,7 +458,7 @@ export default function Portfolio() {
 
       {/* Skills Section */}
       <section id="skills" className="py-32 px-6 relative">
-        <div className="max-w-6xl mx-auto relative">
+        <div className="max-w-6xl xl:max-w-7xl 2xl:max-w-screen-2xl mx-auto relative">
           {/* Section Title */}
           <h2
             data-animate="skills-title"
@@ -470,7 +470,7 @@ export default function Portfolio() {
           </h2>
 
           {/* Skills Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 xl:gap-12 2xl:gap-16">
             {skills.map((skill, index) => (
               <div
                 key={index}
@@ -515,7 +515,7 @@ export default function Portfolio() {
 
       {/* Experience Section */}
       <section id="experience" className="py-32 px-6 relative">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-6xl xl:max-w-7xl 2xl:max-w-screen-2xl mx-auto">
           <h2
             data-animate="experience-title"
             className={`text-3xl md:text-4xl font-bold text-center mb-10 leading-tight pb-2 gradient-text fade-in ${visibleElements.has('experience-title') ? 'visible' : ''
@@ -533,7 +533,7 @@ export default function Portfolio() {
                   }`}
               ></div>
 
-              <div className="space-y-12">
+              <div className="space-y-12 xl:space-y-16 2xl:space-y-20">
 
                 <div
                   data-animate="exp-1"
@@ -612,13 +612,13 @@ export default function Portfolio() {
 
       {/* Projects Section */}
       <section id="projects" className="py-32 px-6 relative">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-6xl xl:max-w-7xl 2xl:max-w-screen-2xl mx-auto">
           <h2
             data-animate="projects-title"
             className={`text-3xl md:text-4xl font-bold text-center mb-10 leading-tight pb-2 gradient-text fade-in ${visibleElements.has('projects-title') ? 'visible' : ''}`}>
             Featured Projects
           </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 xl:gap-12 2xl:gap-16">
             {projects.map((project, index) => (
               <div
                 key={index}
