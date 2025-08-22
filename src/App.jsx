@@ -137,7 +137,7 @@ export default function Portfolio() {
     {
       icon: <Palette className="w-8 h-8" />,
       name: "UI Libraries & Styling",
-      tech: "Bootstrap, Material-UI"
+      tech: "Bootstrap, Material-UI,Tailwind CSS"
     },
     {
       icon: <Smartphone className="w-8 h-8" />,
