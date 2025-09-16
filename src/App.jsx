@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { ChevronDown, Github, Linkedin, Mail, ExternalLink, Code, Palette, Smartphone, Layers, Menu, X, Zap, Star, Rocket, Heart, Server, Database } from 'lucide-react';
+import { ChevronDown, Github, Linkedin, Mail, ExternalLink, Code, Palette, Smartphone, Layers, Menu, X, Zap, Star, Rocket, Heart } from 'lucide-react';
 import { useRef } from 'react';
 import emailjs from '@emailjs/browser';
 
@@ -106,6 +106,14 @@ export default function Portfolio() {
 
   const projects = [
     {
+      title: "Elaview",
+      description: `This is a small demo of the initial design of the original Elaview Project.
+      This project could take a few seconds to load because of the hosting service its on`,
+      tech: ["React", "NodeJS", "Material UI", "Tailwind CSS", "MongoDB"],
+      github: "https://github.com/farazNaqvi729927/Elaview",
+      live: "https://elaview.onrender.com"
+    },
+    {
       title: "KFC Pakistan Clone",
       description: "This is a clone of the KFC Pakistan Website that I created from scratch. It's a proper functioning frontend of the original website.",
       tech: ["React", "JavaScript", "Material UI"],
@@ -133,6 +141,11 @@ export default function Portfolio() {
       icon: <Code className="w-8 h-8" />,
       name: "Frontend Development",
       tech: "React, JavaScript (ES6+), HTML, CSS"
+    },
+    {
+      icon: <Code className="w-8 h-8" />,
+      name: "Backend Development",
+      tech: "NodeJS, ExpressJS, MongoDB, Mongoose"
     },
     {
       icon: <Palette className="w-8 h-8" />,
@@ -368,7 +381,7 @@ export default function Portfolio() {
               }`}>
               <span className="px-6 py-3 glass-card rounded-full text-cyan-400 font-semibold flex items-center space-x-2">
                 <Rocket className="w-5 h-5" />
-                <span>React Frontend Developer</span>
+                <span>Web Developer</span>
               </span>
 
             </div>
@@ -435,7 +448,7 @@ export default function Portfolio() {
               className={`space-y-8 fade-in-right stagger-2 ${visibleElements.has('about-content') ? 'visible' : ''}`}>
               <div className="space-y-6">
                 <p className="text-xl text-gray-300 leading-relaxed">
-                  I'm a passionate React developer who transforms creative visions into
+                  I'm a passionate Web developer who transforms creative visions into
                   <span className="text-cyan-400 font-semibold"> interactive digital experiences</span>.
                   My journey started with curiosity and evolved into a mission to build interfaces
                   that not only look stunning but also feel intuitive and responsive.
@@ -552,7 +565,7 @@ export default function Portfolio() {
                     </div>
                     <p className="text-gray-300 mb-3 font-medium">Personal Projects</p>
                     <p className="text-gray-400 mb-6 leading-relaxed group-hover:text-gray-300 transition-colors duration-300">
-                      Developed multiple frontend applications using React and modern JavaScript. Created responsive,
+                      Developed multiple personal web applications using React and modern JavaScript. Created responsive,
                       user-friendly interfaces with focus on performance and accessibility.
                     </p>
                     <div className="flex flex-wrap gap-2">
