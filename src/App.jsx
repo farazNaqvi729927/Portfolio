@@ -107,7 +107,7 @@ export default function Portfolio() {
   const projects = [
     {
       title: "Elaview",
-      description: `This is a small demo of the initial design of the original Elaview Project.
+      description: `A small full-stack demo representing the first design phase of the original Elaview Project, developed independently.
       This project could take a few seconds to load because of the hosting service its on`,
       tech: ["React", "NodeJS", "Material UI", "Tailwind CSS", "MongoDB"],
       github: "https://github.com/farazNaqvi729927/Elaview",
