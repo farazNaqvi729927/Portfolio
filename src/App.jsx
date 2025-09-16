@@ -388,8 +388,7 @@ export default function Portfolio() {
 
             <p className={`text-xl md:text-2xl text-gray-300 mb-12 max-w-8xl mx-auto leading-relaxed transition-all duration-1000 delay-600 ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-16 opacity-0'
               }`}>
-              Crafting extraordinary digital experiences with React and modern UI tools —
-              building responsive, user-friendly interfaces and mastering frontend development best practices.
+              Crafting extraordinary digital experiences with the MERN stack — specializing in React and modern UI tools to build responsive, user-friendly interfaces.
             </p>
 
             <div className={`flex justify-center space-x-6 mb-16 transition-all duration-1000 delay-800 ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-16 opacity-0'
